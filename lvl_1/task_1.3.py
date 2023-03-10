@@ -32,9 +32,12 @@ def day_in_month(day: int) -> str:
         12: "31 день"    # декабрь
         }
 
-    return months.get(day, "Такого месяца нет!")
-# Проверка:
+    if day in months:
+        return months[day]
+    else:
+        return "Такого месяца нет!"
 
+# Проверка:
 count = 0
 while count != 13:
     count += 1

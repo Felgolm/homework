@@ -1,5 +1,5 @@
 from random import choice
-from datetime import time, timedelta
+from datetime import time
 from decimal import Decimal, ROUND_HALF_DOWN
 
 # Задача 1.2.
