@@ -7,3 +7,6 @@
 
 ## Источники
 Задачи взяты из [курса Skillbox "Профессия Python-разработчик"](https://skillbox.ru/course/profession-python/), а также портала [codewars.com](https://www.codewars.com/)
+
+
+## Состояние: Выполнено.
