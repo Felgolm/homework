@@ -1,4 +1,4 @@
-from random import choice
+from random import sample
 from datetime import time
 from decimal import Decimal, ROUND_HALF_DOWN
 
@@ -51,52 +51,61 @@ my_favorite_songs_dict = {
 
 
 def choice_songs(input_list: list | dict) -> dict:
+    """ Принимает list или dict. Возвращает dict с тремя песнями """
     three_random_songs = {}
-    name = ''
-    _time = 0.0
-    while len(three_random_songs) != 3:
-        match input_list:
-            case list():
-                name, _time = choice(input_list)
+    
+    match input_list:
+        case list():
+            items = sample(input_list, 3)
+            for i in items:
+                three_random_songs[i[0]] = i[1]
 
-            case dict():
-                name, _time = choice(list(input_list.items()))
+        case dict():
+            # binary repitor: a = {'a': 1}
+            #                 a |= {'b' : 2} => {'a': 1, 'b': 2}
+            three_random_songs |= sample(sorted(input_list.items()), 3)
+            # three_random_songs.update(sample(sorted(input_list.items()), 3))
 
-        if name not in three_random_songs:
-            three_random_songs[name] = _time
     return three_random_songs
 
 
 def time_counter(song_list: dict) -> float:
+    """ Суммирует общее время песен """
     return sum(song_list.values())
 
 
-def float_to_time(time_in_float: float) -> time:
-    round_time = Decimal(time_in_float).quantize(Decimal("1.00"), ROUND_HALF_DOWN)
+def float_to_time(float_time: float) -> time:
+    """ Конвертирует значение float в time """
+
+    round_time = Decimal(float_time).quantize(Decimal("1.00"), ROUND_HALF_DOWN)
 
     _min, _sec = str(round_time).split(".")
     minutes = int(_min) + int(_sec) // 60
     seconds = int(_sec) % 60
-
     return time(minute=minutes, second=seconds)
 
 
 def main(song_list: list | dict) -> None:
-    choisen_songs = choice_songs(song_list)
-    songs = choisen_songs
+    # 1. Бережно отбираем песни
+    random_songs = choice_songs(song_list)
+    
+    # 2. Сохраняем наименования для вывода
+    song_names = ', '.join(random_songs)
+    
+    # 3. Подсчитываем общее время
+    float_time = time_counter(random_songs)
+    
+    # 4. Переводим время в формат 'time'
+    _time = float_to_time(float_time)
 
-    time_in_float = time_counter(choisen_songs)
-    _time = float_to_time(time_in_float)
-
-    print("=" * 50)
-    print(f'Бережно отобранные песни: {songs}\n'
-          f"Общее время песен: {_time} минут")
-
-    print("=" * 50 + "\n")
+    print("=" * 80 + 
+          f'\nБережно отобранные песни: {song_names}\nОбщее время песен: {_time} минут\n' +
+          "=" * 80 + "\n")
 
 
 if __name__ == "__main__":
     print('From list:')
     main(my_favorite_songs)
+
     print('From dict:')
     main(my_favorite_songs_dict)

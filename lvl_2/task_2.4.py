@@ -25,9 +25,7 @@ for i in strins:
 # remove("!Hi") == "!Hi"
 
 def remove_last_em(s: str) -> str:
-    if s[-1] == '!':
-        return s[0:-1]
-    return s
+    return s[:-1] if s[-1] == '!' else s
 
 
 # Проверка
@@ -54,11 +52,7 @@ for i in strings:
 
 def remove_word_with_one_em(received_string: str):
     received_string = received_string.split(" ")
-    new_string = ''
-    for ch in received_string:
-        if ch.count('!') != 1:
-            new_string += ch
-    return new_string
+    return ''.join(ch for ch in received_string if ch.count('!') != 1)
 
 
 # # Проверка:
@@ -69,5 +63,5 @@ solutions = ('""', '""', '""', '"Hi"', '""', '"Hi!!"', '"!Hi!"')
 print("\n" + "Задание C:")
 
 for i in range(len(string_list)):
-    print(f'{string_list[i]} -> {remove_word_with_one_em(string_list[i])}', end=' || ')
+    print(f'{string_list[i]} -> "{remove_word_with_one_em(string_list[i])}"', end=' || ')
     print(f"Должно быть: {solutions[i]}")

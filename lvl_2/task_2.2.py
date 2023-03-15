@@ -20,7 +20,7 @@ def quarter_of(month: int) -> str:
         7: "июль", 8: "август", 9: "сентябрь",
         10: "октябрь", 11: "ноябрь", 12: "декабрь"}
 
-    for quarter in quarter_dict.keys():
+    for quarter in quarter_dict:
         if month in quarter_dict[quarter]:
             return f'{months[month].title()} - {quarter}' 
     
@@ -28,7 +28,5 @@ def quarter_of(month: int) -> str:
             
 
 # Проверка:
-monts_tuple = (x for x in range(0, 13))
-
-for month in monts_tuple:
+for month in range(1, 13):
     print(f'{quarter_of(month)} \n')
