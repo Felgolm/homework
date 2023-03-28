@@ -2,6 +2,7 @@ from random import sample
 from datetime import time
 from decimal import Decimal, ROUND_HALF_DOWN
 
+
 # Задача 1.2.
 
 # Пункт A. 
@@ -61,7 +62,7 @@ def choice_songs(input_list: list | dict) -> dict:
                 three_random_songs[i[0]] = i[1]
 
         case dict():
-            # binary repitor: a = {'a': 1}
+            # binary repieter: a = {'a': 1}
             #                 a |= {'b' : 2} => {'a': 1, 'b': 2}
             three_random_songs |= sample(sorted(input_list.items()), 3)
             # three_random_songs.update(sample(sorted(input_list.items()), 3))
@@ -109,3 +110,9 @@ if __name__ == "__main__":
 
     print('From dict:')
     main(my_favorite_songs_dict)
+
+
+
+    l1 = [1,2,3]
+    num1 = ''.join(map(str,l1))[::-1]
+    print(num1)
