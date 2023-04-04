@@ -50,3 +50,5 @@ def main(titles: dict, store: dict) -> None:
 
 if __name__ == "__main__":
     main(titles, store)
+    
+#  Ну тоже без вопросов.
