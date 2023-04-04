@@ -63,17 +63,26 @@ class Matrix:
 
 
 class Table:
-    def __init__(self, column: int, line: int):
-        self.column = column
-        self.line = line
-        self.struct = self.create_matrix(column, line)
-   
-    def create_table(self, column: int, line: int):
-        
-        pass
+    def __init__(self, colnames: list):
+        self.colnames = colnames
+        self.rows = []
 
-    def __repr__(self) -> str:
-        return ''
+    def add_row(self, row: dict):
+        if any(colname not in tuple(row) for colname in self.colnames):  # хотя бы один элемент не соответствует
+            print('Такой колонки нет')
+        else:
+            self.rows.append(row)
+
+    def get_column(self, colname):
+        if (colname not in self.colnames):
+            print('Такой колонки нет')
+        return [r[colname] for r in self.rows]
+
+
+    def sum(self, colname: str):
+        if colname not in self.colnames:
+          print('Неправильный формат')
+        return sum([r[colname] for r in self.rows])
     
     # Рецепт велоспеда:
     # Принять число колон и строк. Создать таблицу, где число колонок и строк равна заданным значениям
@@ -104,3 +113,20 @@ if __name__ == "__main__":
 
 # Проверка Таблицы:
     # TODO - сделать класс таблицы
+table1 = Table(['a', 'b'])
+table1.add_row({'a': 1, 'b': 2})
+table1.add_row({'a': 2, 'b': 4})
+table1.add_row({'a': 3, 'b': 8})
+table1.add_row({'a': 4, 'b': 16})
+print(table1.get_column('a'))
+print(table1.get_column('b'))
+print(table1.rows)
+
+# Хотели сделать таблицу.
+# вариант с созданием таблицы можно реализовать, например через словари. Они будут в качестве строк.
+# Можно попробовать сделать ключ в качестве имени колонки, значение в качестве всей колонки
+
+
+
+
+
