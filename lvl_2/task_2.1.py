@@ -43,3 +43,25 @@ for list_ in list_of_lists:
     print("минимум:", minimum(list_))
     print("максимум:", maximum(list_))
     print('=' * 10 + '\n')
+
+# Можно кстати через быструю сортировку
+# Быстрая сортировка
+def quicksort(arr):
+    if len(arr) < 2:
+        return arr
+    else:
+        pivot = arr[0]
+        less = [i for i in arr[1:] if i <= pivot]
+        greater = [i for i in arr[1:] if i > pivot]
+        return quicksort(less) + [pivot] + quicksort(greater)
+
+# Максимум - это последний элемент отсортированного списка
+def maximum(arr):
+    return quicksort(arr)[-1]
+
+ # Минимум - это первый элемент отсортированного списка
+def minimum(arr):
+    return quicksort(arr)[0]
+print('\nБыстрая сортировка')
+print('min =', minimum([4,6,2,1,9,63,-134,566]))
+print('max =', maximum([4,6,2,1,9,63,-134,566]))
