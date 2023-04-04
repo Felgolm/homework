@@ -65,3 +65,6 @@ print("\n" + "Задание C:")
 for i in range(len(string_list)):
     print(f'{string_list[i]} -> "{remove_word_with_one_em(string_list[i])}"', end=' || ')
     print(f"Должно быть: {solutions[i]}")
+
+    
+# Отлично) точь в точь решение)
