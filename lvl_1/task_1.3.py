@@ -42,3 +42,13 @@ count = 0
 while count != 13:
     count += 1
     print(f'Inpit: {count}, Output: {day_in_month(count)}')
+
+# Можно ее еще решить через модуль calendar
+import calendar as cl
+
+year_input = input("Введите год: ")
+month_input = input("Введите номер месяца: ")
+
+year = int(year_input)
+month_ = int(month_input)
+print(cl.monthrange(year, month_))
